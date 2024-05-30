@@ -1,0 +1,91 @@
+<div class="card bg-body-secondary">
+  <div class="card-body">
+    <form action="/movies/edit" method="post" enctype="multipart/form-data">
+      <h4 class="card-title">Edit Movie</h4>
+      <!-- Title -->
+      <input type="hidden" name="id" value="<%= movie._id %>">
+      <div class="row mb-3">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" name="title" value="<%= movie.title %>" />
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label"
+          >Description</label
+        >
+        <div class="col-sm-10">
+          <textarea
+            name="description"
+            class="form-control"
+            id="description"
+          ><%= movie.description %></textarea>
+        </div>
+      </div>
+      <!-- Image -->
+      <input type="hidden" name="old_image" value="<%= movie.image %>">
+      <div class="row mb-3">
+        <label for="image" class="col-sm-2 col-form-label">Image</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control" id="image" name="image" />
+        </div>
+      </div>
+      <!-- Rating -->
+      <div class="row mb-3">
+        <label for="rating" class="col-sm-2 col-form-label">Rating</label>
+        <div class="col-sm-10">
+          <input type="hidden" name="rating" id="rating" value="<%= movie.rating %>" />
+          <div class="btn-group">
+            <% for (let i = 1; i <= 5; i++) { %>
+            <button type="button" class="btn btn-outline-secondary">
+              <% if (i <= movie.rating) { %>
+              <i class="bi bi-star-fill"></i>
+              <% } else { %>
+                <i class="bi bi-star"></i>
+                <% } %>
+            </button>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <!-- Catagory -->
+      <div class="row mb-3">
+        <label for="catagory" class="col-sm-2 col-form-label">Catagory</label>
+        <div class="col-sm-10">
+          <select name="catagory" class="form-control id="catagory">
+            <% catagories.forEach(({name}) => { %>
+              <option value="<%= name %>" <%= movie.catagory == name ? "selected" : "" %>><%= name %></option>
+              <% }) %>
+          </select>
+        </div>
+      </div>
+      <!-- Submit -->
+      <button type="submit" class="btn btn-secondary">Edit Movie</button>
+    </form>
+  </div>
+</div>
+<!-- Script -->
+<script>
+  $(document).ready(() => {
+    $(".btn-group").on("click", function (event) {
+      const star =
+        event.target.tagName == "I" ? event.target.parentNode : event.target;
+
+      $('input[name="rating"]').val($(star).index() + 1);
+
+      $(this)
+        .children()
+        .children()
+        .removeClass("bi-star-fill")
+        .addClass("bi-star");
+
+      $(star).children().removeClass("bi-star").addClass("bi-star-fill");
+      $(star)
+        .prevAll()
+        .children()
+        .removeClass("bi-star")
+        .addClass("bi-star-fill");
+    });
+  });
+</script>

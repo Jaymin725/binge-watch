@@ -1,0 +1,73 @@
+<div class="card bg-body-secondary">
+  <div class="card-body">
+    <form action="" method="" enctype="">
+      <h4 class="card-title">Movie Details</h4>
+      <!-- Title -->
+      <input type="hidden" name="id" value="<%= movie._id %>" />
+      <div class="row mb-3">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            value="<%= movie.title %>"
+            readonly
+          />
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label"
+          >Description</label
+        >
+        <div class="col-sm-10">
+          <textarea
+            name="description"
+            class="form-control"
+            id="description"
+            readonly
+          >
+<%= movie.description %></textarea
+          >
+        </div>
+      </div>
+      <!-- Image -->
+      <div class="row mb-3">
+        <label for="image" class="col-sm-2 col-form-label">Image</label>
+        <div class="col-sm-10">
+          <img
+            src="/public/uploads/<%= movie.image %>"
+            class="w-25 ratio ratio-1x1 object-fit-cover"
+            alt="<%= movie.title %>"
+          />
+        </div>
+      </div>
+      <!-- Rating -->
+      <div class="row mb-3">
+        <label for="rating" class="col-sm-2 col-form-label">Rating</label>
+        <div class="col-sm-10">
+          <% for (let i = 1; i <= 5; i++) { if (movie.rating >= i) { %>
+          <i class="bi bi-star-fill"></i>
+          <% } else { %>
+          <i class="bi bi-star"></i>
+          <% } } %>
+        </div>
+      </div>
+      <!-- Catagory -->
+      <div class="row mb-3">
+        <label for="catagory" class="col-sm-2 col-form-label">Catagory</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            name="catagory"
+            class="form-control"
+            id="catagories"
+            value="<%= movie.catagory %>"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

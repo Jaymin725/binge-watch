@@ -1,0 +1,12 @@
+<!-- Header -->
+<%- include("../partials/header"); -%>
+<!-- Dashboard -->
+<div class="d-flex flex-grow-1">
+  <!-- Aside -->
+  <%- include("../partials/aside"); -%>
+  <!-- Main -->
+  <main class="col p-3">
+    <!-- Page -->
+    <%- include(`../pages/${page}`); -%>
+  </main>
+</div>

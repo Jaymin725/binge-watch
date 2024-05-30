@@ -1,0 +1,37 @@
+<div class="card bg-body-secondary">
+  <div class="card-body">
+    <h4 class="card-title">Catagories</h4>
+    <table class="table table-hover align-middle border">
+      <thead>
+        <tr class="">
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th class="text-end" scope="col">
+            <a class="btn btn-primary" href="/catagories/add">
+              <i class="bi bi-plus"></i>
+              <span>Add Catagory</span>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% catagories.forEach(({ _id, name }, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= name %></td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="/catagories/edit/<%= _id %>">
+                <i class="bi bi-pen"></i>
+              </a>
+              <a class="btn btn-danger" href="/catagories/delete/<%= _id %>">
+                <i class="bi bi-trash"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

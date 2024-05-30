@@ -1,0 +1,7 @@
+/
+|-/movies
+| |-/:id
+| | |-GET - Get movie details
+| | |-POST - 
+| |-GET - Get movies list
+| |-POST - Add new movie
