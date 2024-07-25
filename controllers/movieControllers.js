@@ -3,15 +3,15 @@ const Movie = require("../models/Movie");
 const fs = require("fs");
 
 async function getMovies(req, res) {
-  const movies = await Movie.find({});
+  const movies = await Movie.find({}).populate("catagory");
   res.render("index", { layout: "dashboard", page: "movies", movies });
 }
 
 async function addMovie(req, res) {
   let movie = new Movie(req.body);
   movie.image = req.file.filename;
-
   await movie.save();
+  req.flash("success", "Movie added successfully");
   res.redirect("/movies");
 }
 
@@ -26,6 +26,7 @@ async function editMovie(req, res) {
   }
 
   await Movie.findByIdAndUpdate(req.body.id, req.body);
+  req.flash("info", "Movie edited successfully");
   res.redirect("/movies");
 }
 
@@ -34,6 +35,7 @@ async function deleteMovie(req, res) {
   fs.unlinkSync("./public/uploads/" + movie.image);
 
   await Movie.findByIdAndDelete(req.params.id);
+  req.flash("danger", "Movie deleted successfully");
   res.redirect("/movies");
 }
 

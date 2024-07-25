@@ -1,6 +1,17 @@
 <div class="card bg-body-secondary">
   <div class="card-body">
     <h4 class="card-title">Catagories</h4>
+    <% let msg; while (msg = flash.shift()) { %>
+    <div class="alert alert-<%= msg.type %> alert-dismissible fade show">
+      <%= msg.message %>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <% } %>
     <table class="table table-hover align-middle border">
       <thead>
         <tr class="">

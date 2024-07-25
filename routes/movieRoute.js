@@ -32,7 +32,7 @@ movieRouter
 
     res.render("index", {
       layout: "dashboard",
-      page: "add-movie",
+      page: "movie-add",
       catagories,
     });
   })
@@ -41,22 +41,22 @@ movieRouter
 movieRouter.post("/edit", upload.single("image"), editMovie);
 
 movieRouter.get("/edit/:id", async (req, res) => {
-  const movie = await Movie.findById(req.params.id);
+  const movie = await Movie.findById(req.params.id).populate("catagory");
   movie.id = req.params.id;
 
   const catagories = await Catagory.find({});
 
   res.render("index", {
     layout: "dashboard",
-    page: "edit-movie",
+    page: "movie-edit",
     movie,
     catagories,
   });
 });
 
 movieRouter.get("/view/:id", async (req, res) => {
-  const movie = await Movie.findById(req.params.id);
-  res.render("index", { layout: "dashboard", page: "view-movie", movie });
+  const movie = await Movie.findById(req.params.id).populate("catagory");
+  res.render("index", { layout: "dashboard", page: "movie-view", movie });
 });
 
 movieRouter.route("/delete/:id").get(deleteMovie);

@@ -1,4 +1,4 @@
-const database = require("../config/database");
+const mongoose = require("../config/mongoose");
 const { Schema } = require("mongoose");
 
 const movieSchema = new Schema({
@@ -9,9 +9,12 @@ const movieSchema = new Schema({
   description: String,
   image: String,
   rating: Number,
-  catagory: String,
+  catagory: {
+    type: Schema.Types.ObjectId,
+    ref: "Catagory",
+  },
 });
 
-const Movie = database.model("Movie", movieSchema);
+const Movie = mongoose.model("Movie", movieSchema);
 
 module.exports = Movie;

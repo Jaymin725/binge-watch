@@ -48,8 +48,8 @@
         <label for="catagory" class="col-sm-2 col-form-label">Catagory</label>
         <div class="col-sm-10">
           <select name="catagory" class="form-control id="catagory">
-            <% catagories.forEach(({name}) => { %>
-              <option value="<%= name %>"><%= name %></option>
+            <% catagories.forEach(({ _id, name }) => { %>
+              <option value="<%= _id %>"><%= name %></option>
               <% }) %>
           </select>
         </div>

@@ -17,7 +17,7 @@ catagoryRouter
   .get((req, res) =>
     res.render("index", {
       layout: "dashboard",
-      page: "add-catagory",
+      page: "catagory-add",
     })
   )
   .post(addCatagory);
@@ -30,7 +30,7 @@ catagoryRouter.get("/edit/:id", async (req, res) => {
 
   res.render("index", {
     layout: "dashboard",
-    page: "edit-catagory",
+    page: "catagory-edit",
     catagory,
   });
 });

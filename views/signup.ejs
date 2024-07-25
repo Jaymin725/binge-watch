@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head"); -%>
+
+  <body
+    class="min-vh-100 d-flex flex-column justify-content-center align-items-center"
+    data-bs-theme="dark"
+  >
+    <form class="col-4" action="/signup" method="post">
+      <div class="mb-3">
+        <h3 class=""><i class="bi bi-file-lock2 me-1"></i> Signup</h3>
+      </div>
+      <div class="mb-3">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            value="Jaymin725"
+          />
+          <label for="username">Username</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            value="atm@123"
+          />
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-primary w-100">Signup</button>
+      </div>
+      <hr />
+      <div>
+        <a href="/login" class="btn btn-secondary w-100">Login</a>
+      </div>
+    </form>
+  </body>
+</html>
